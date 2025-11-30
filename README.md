@@ -1,0 +1,373 @@
+# 🏨 Hotel Booking Cancellation Prediction
+
+An AI-powered web application that predicts hotel booking cancellations using machine learning. Built with XGBoost, Python, and Gradio for real-time risk assessment.
+
+## ✨ Features
+
+- 🎯 **87.90% Accuracy** - Highly accurate predictions based on 119,390+ bookings
+- 🔍 **Real-time Risk Assessment** - Instant cancellation probability calculation
+- 📊 **Comprehensive Analytics** - Detailed risk factors and recommendations
+- 🌐 **Web Interface** - Beautiful, user-friendly Gradio dashboard
+- 🚀 **Easy Deployment** - One-click deployment to Hugging Face Spaces
+- 🔒 **Privacy-First** - All processing done locally, no data stored
+
+
+
+## 🎬 Demo
+
+Try the live demo: [Hotel Booking Prediction App]([https://huggingface.co/spaces/your-username/hotel-booking-prediction](https://0eeea9401c0c2a723b.gradio.live/))
+
+## 📋 Table of Contents
+
+- [Features](#-features)
+- [Installation](#-installation)
+- [Usage](#-usage)
+- [Model Performance](#-model-performance)
+- [Project Structure](#-project-structure)
+- [Technologies](#-technologies)
+- [Deployment](#-deployment)
+- [API Reference](#-api-reference)
+- [Contributing](#-contributing)
+- [License](#-license)
+- [Acknowledgments](#-acknowledgments)
+
+## 🚀 Installation
+
+### Prerequisites
+
+- Python 3.8 or higher
+- pip package manager
+
+### Quick Start
+
+1. **Clone the repository**
+```bash
+git clone https://github.com/your-username/hotel-booking-prediction.git
+cd hotel-booking-prediction
+```
+
+2. **Install dependencies**
+```bash
+pip install -r requirements.txt
+```
+
+3. **Run the application**
+```bash
+python app.py
+```
+
+4. **Open your browser**
+Navigate to `http://localhost:7860`
+
+### Docker Installation (Optional)
+
+```bash
+docker build -t hotel-booking-prediction .
+docker run -p 7860:7860 hotel-booking-prediction
+```
+
+## 💻 Usage
+
+### Local Deployment
+
+```bash
+# Run with local access only
+python app.py
+
+# Run with public sharing (72-hour link)
+# Edit app.py and set share=True
+python app.py
+```
+
+### Input Parameters
+
+The model accepts the following inputs:
+
+#### 🏨 Hotel Information
+- **Hotel Type**: City Hotel or Resort Hotel
+- **Lead Time**: Days between booking and arrival (0-365)
+- **Arrival Date**: Month and year of arrival
+
+#### 👥 Guest Details
+- **Adults**: Number of adult guests (1-10)
+- **Children**: Number of children (0-10)
+- **Babies**: Number of babies (0-5)
+- **Meal Plan**: BB, HB, FB, SC, or Undefined
+- **Country**: Guest's country of origin
+
+#### 📊 Booking Details
+- **Market Segment**: Online TA, Offline TA/TO, Direct, etc.
+- **Distribution Channel**: TA/TO, Direct, Corporate, GDS
+- **Customer Type**: Transient, Group, Contract
+- **Room Type**: A-G
+- **Deposit Type**: No Deposit, Non-Refund, Refundable
+
+#### 📈 Guest History
+- **Repeated Guest**: Yes/No
+- **Previous Cancellations**: 0-20
+- **Previous Bookings**: 0-50
+
+#### 💰 Financial
+- **ADR (Average Daily Rate)**: €0-500
+- **Parking Spaces**: 0-5
+- **Special Requests**: 0-5
+- **Booking Changes**: 0-10
+- **Waiting List Days**: 0-100
+
+### Output
+
+The application provides:
+
+- **Risk Level**: 🟢 Low Risk | 🟡 Medium Risk | 🔴 High Risk
+- **Cancellation Probability**: Percentage likelihood of cancellation
+- **Confirmation Probability**: Percentage likelihood of confirmation
+- **Actionable Recommendations**: Tailored suggestions based on risk level
+- **Key Risk Factors Analysis**: Breakdown of main contributing factors
+
+## 📊 Model Performance
+
+| Metric | Score |
+|--------|-------|
+| **Accuracy** | 87.90% |
+| **Precision** | 82.45% |
+| **Recall** | 87.55% |
+| **F1-Score** | 84.27% |
+| **AUC-ROC** | 0.9234 |
+
+### Feature Importance
+
+Top 10 most important features:
+1. Lead Time
+2. Deposit Type
+3. Previous Cancellations
+4. Market Segment
+5. Country
+6. ADR (Average Daily Rate)
+7. Total Nights
+8. Booking Changes
+9. Customer Type
+10. Special Requests
+
+## 📁 Project Structure
+
+```
+hotel-booking-prediction/
+│
+├── app.py                          # Main Gradio application
+├── xgboost_final_model.pkl        # Trained XGBoost model
+├── scaler.pkl                      # StandardScaler for features
+├── requirements.txt                # Python dependencies
+├── README.md                       # Project documentation
+├── LICENSE                         # MIT License
+│
+├── notebooks/                      # Jupyter notebooks
+│   ├── 01_data_exploration.ipynb
+│   ├── 02_feature_engineering.ipynb
+│   ├── 03_model_training.ipynb
+│   └── 04_model_evaluation.ipynb
+│
+├── data/                           # Dataset (not included)
+│   ├── raw/
+│   └── processed/
+│
+├── models/                         # Model artifacts
+│   ├── xgboost_final_model.pkl
+│   └── scaler.pkl
+│
+├── tests/                          # Unit tests
+│   ├── test_app.py
+│   └── test_model.py
+│
+└── docs/                           # Additional documentation
+    ├── API.md
+    ├── DEPLOYMENT.md
+    └── MODEL_DETAILS.md
+```
+
+## 🛠️ Technologies
+
+### Core Technologies
+- **Python 3.8+** - Programming language
+- **XGBoost** - Gradient boosting framework
+- **Scikit-learn** - Machine learning library
+- **Pandas & NumPy** - Data manipulation
+- **Gradio 4.44.0** - Web interface
+
+### ML Pipeline
+- **Feature Engineering**: 234 features including one-hot encoding
+- **Preprocessing**: StandardScaler for numerical features
+- **Model**: XGBoost Classifier with optimized hyperparameters
+- **Validation**: 5-fold cross-validation
+
+### Dependencies
+
+```txt
+gradio==4.44.0
+numpy>=1.21.0
+pandas>=1.3.0
+joblib>=1.0.0
+xgboost>=1.5.0
+scikit-learn>=1.0.0
+```
+
+## 🌐 Deployment
+
+### Hugging Face Spaces (Recommended)
+
+1. Create account on [Hugging Face](https://huggingface.co)
+2. Create a new Space with Gradio SDK
+3. Upload files:
+   - `app.py`
+   - `requirements.txt`
+   - `xgboost_final_model.pkl`
+   - `scaler.pkl`
+4. Your app will be live at: `https://huggingface.co/spaces/username/app-name`
+
+### Render
+
+1. Create account on [Render](https://render.com)
+2. Connect your GitHub repository
+3. Configure:
+   - **Build Command**: `pip install -r requirements.txt`
+   - **Start Command**: `python app.py`
+4. Deploy!
+
+### Google Colab
+
+Upload files to Colab and run:
+```python
+!pip install gradio xgboost joblib pandas numpy scikit-learn
+!python app.py
+```
+
+### Gradio Share Link
+
+Set `share=True` in `app.py` for a temporary 72-hour public link:
+```python
+demo.launch(share=True)
+```
+
+## 📚 API Reference
+
+### Prediction Function
+
+```python
+predict_cancellation(
+    hotel_type: str,           # "City Hotel" or "Resort Hotel"
+    lead_time: int,           # 0-365 days
+    arrival_month: str,       # "January" to "December"
+    arrival_year: int,        # Year (e.g., 2024)
+    weekend_nights: int,      # 0-10
+    week_nights: int,         # 0-30
+    adults: int,              # 1-10
+    children: int,            # 0-10
+    babies: int,              # 0-5
+    meal_plan: str,           # "BB", "HB", "FB", "SC", "Undefined"
+    country: str,             # ISO country code
+    market_segment: str,      # Market segment
+    distribution_channel: str,# Distribution channel
+    is_repeated: bool,        # Repeated guest?
+    prev_cancellations: int,  # 0-20
+    prev_bookings: int,       # 0-50
+    room_type: str,           # "A" to "G"
+    deposit_type: str,        # Deposit type
+    customer_type: str,       # Customer type
+    adr: float,               # 0-500 (€)
+    parking: int,             # 0-5
+    special_requests: int,    # 0-5
+    booking_changes: int,     # 0-10
+    waiting_days: int         # 0-100
+) -> str  # HTML formatted result
+```
+
+### Example
+
+```python
+result = predict_cancellation(
+    hotel_type="Resort Hotel",
+    lead_time=30,
+    arrival_month="July",
+    arrival_year=2024,
+    weekend_nights=1,
+    week_nights=2,
+    adults=2,
+    children=0,
+    babies=0,
+    meal_plan="BB",
+    country="PRT",
+    market_segment="Online TA",
+    distribution_channel="TA/TO",
+    is_repeated=False,
+    prev_cancellations=0,
+    prev_bookings=0,
+    room_type="A",
+    deposit_type="No Deposit",
+    customer_type="Transient",
+    adr=100.0,
+    parking=0,
+    special_requests=0,
+    booking_changes=0,
+    waiting_days=0
+)
+```
+
+## 🤝 Contributing
+
+Contributions are welcome! Here's how you can help:
+
+1. **Fork the repository**
+2. **Create a feature branch**
+   ```bash
+   git checkout -b feature/AmazingFeature
+   ```
+3. **Commit your changes**
+   ```bash
+   git commit -m 'Add some AmazingFeature'
+   ```
+4. **Push to the branch**
+   ```bash
+   git push origin feature/AmazingFeature
+   ```
+5. **Open a Pull Request**
+
+### Development Guidelines
+
+- Follow PEP 8 style guide
+- Add unit tests for new features
+- Update documentation as needed
+- Keep commits atomic and well-described
+
+## 🐛 Bug Reports
+
+Found a bug? Please open an issue with:
+- Bug description
+- Steps to reproduce
+- Expected vs actual behavior
+- Screenshots (if applicable)
+- Environment details (OS, Python version, etc.)
+
+## 📈 Roadmap
+
+- [ ] Add support for multiple languages
+- [ ] Implement batch prediction
+- [ ] Add visualization dashboard
+- [ ] Create REST API endpoint
+- [ ] Add model explainability (SHAP values)
+- [ ] Mobile app version
+- [ ] Integration with hotel management systems
+- [ ] Real-time model retraining pipeline
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Dataset: [Hotel Booking Demand Dataset](https://www.sciencedirect.com/science/article/pii/S2352340918315191) by Nuno Antonio, Ana Almeida, and Luis Nunes
+- Inspiration: Kaggle Hotel Booking Competition
+- UI Framework: [Gradio](https://gradio.app/) by Hugging Face
+- ML Framework: [XGBoost](https://xgboost.ai/)
+
+
+Project Link: [https://github.com/your-username/hotel-booking-prediction](https://github.com/your-username/hotel-booking-prediction)
+
