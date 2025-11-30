@@ -2,6 +2,8 @@
 
 An AI-powered web application that predicts hotel booking cancellations using machine learning. Built with XGBoost, Python, and Gradio for real-time risk assessment.
 
+The project focuses on predicting hotel booking cancellations, a critical task for revenue management and operational planning. The dataset includes diverse booking-related features (e.g., lead time, deposit type, special requests), requiring thorough preprocessing such as handling missing values, noise, and feature engineering. The goal is to train and evaluate multiple models, compare performance using appropriate metrics, and interpret key features driving cancellations.
+
 ## ✨ Features
 
 - 🎯 **87.90% Accuracy** - Highly accurate predictions based on 119,390+ bookings
@@ -15,7 +17,8 @@ An AI-powered web application that predicts hotel booking cancellations using ma
 
 ## 🎬 Demo
 
-Try the live demo: [Hotel Booking Prediction App]([https://huggingface.co/spaces/your-username/hotel-booking-prediction](https://0eeea9401c0c2a723b.gradio.live/))
+Try the live demo: https://0eeea9401c0c2a723b.gradio.live/
+Drive Link for (Local Deployment):https://drive.google.com/drive/folders/1wb2l9NquFy_9ns-vESh_BmQkoBqxJQPF?usp=drive_link
 
 ## 📋 Table of Contents
 
@@ -363,10 +366,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- Dataset: [Hotel Booking Demand Dataset](https://www.sciencedirect.com/science/article/pii/S2352340918315191) by Nuno Antonio, Ana Almeida, and Luis Nunes
+- Dataset: [Hotel Booking Demand Dataset](https://www.kaggle.com/datasets/kartik2112/fraud-detection/data) by Nuno Antonio, Ana Almeida, and Luis Nunes
 - Inspiration: Kaggle Hotel Booking Competition
-- UI Framework: [Gradio](https://gradio.app/) by Hugging Face
-- ML Framework: [XGBoost](https://xgboost.ai/)
 
 
 Project Link: [https://github.com/your-username/hotel-booking-prediction](https://github.com/your-username/hotel-booking-prediction)
